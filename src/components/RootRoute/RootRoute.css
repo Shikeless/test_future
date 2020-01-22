@@ -1,0 +1,9 @@
+.App {
+  background-color: aliceblue;
+  background-size: cover;
+  background-image: url(./bg.jpg);
+  text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
