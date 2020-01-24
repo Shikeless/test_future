@@ -1,9 +1,21 @@
 import { createAction } from "redux-actions";
 
-export const smallDataRequest = createAction("SMALLDATA/REQUEST");
-export const smallDataFailure = createAction("SMALLDATA/FAILURE");
-export const smallDataSuccess = createAction("SMALLDATA/SUCCESS");
+export const dataRequest = createAction("DATA/REQUEST");
+export const dataFailure = createAction("DATA/FAILURE");
+export const dataSuccess = createAction("DATA/SUCCESS");
 
-export const bigDataRequest = createAction("BIGDATA/REQUEST");
-export const bigDataFailure = createAction("BIGDATA/FAILURE");
-export const bigDataSuccess = createAction("BIGDATA/SUCCESS");
+export const restoreDataRequest = createAction("RESTOREDATA/REQUEST");
+export const restoreDataSuccess = createAction("RESTOREDATA/SUCCESS");
+
+export const addNewDataRequest = createAction("ADDNEWDATA/REQUEST");
+export const addNewDataSuccess = createAction("ADDNEWDATA/SUCCESS");
+
+export const searchingRequest = createAction("SEARCHING/REQUEST");
+export const searchingFailure = createAction("SEARCHING/FAILURE");
+export const searchingSuccess = createAction("SEARCHING/SUCCESS");
+
+export const sortingRequest = createAction("SORTING/REQUEST");
+export const sortingSuccess = createAction("SORTING/SUCCESS");
+
+export const isLoadingSet = createAction("ISLOADING/SET");
+export const isLoadingRemove = createAction("ISLOADING/REMOVE");
