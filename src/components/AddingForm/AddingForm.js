@@ -4,12 +4,28 @@ import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { validate } from "../../helpers/validate";
 import { useStyles } from "./styles.js";
+import { addNewDataRequest } from "../../modules/Loader/";
+import { connect } from "react-redux";
+
+const MapDispatchToProps = {
+  addNewDataRequest
+};
 
 function AddingForm(props) {
   const classes = useStyles();
 
-  const onSubmit = () => {
-    console.log("sending");
+  const onSubmit = values => {
+    props.addNewDataRequest(
+      Object.assign(values, {
+        address: {
+          streetAddress: "",
+          city: "",
+          state: "",
+          zip: ""
+        },
+        description: ""
+      })
+    );
   };
 
   return (
@@ -19,7 +35,12 @@ function AddingForm(props) {
           onSubmit={onSubmit}
           validate={validate}
           render={({ handleSubmit, submitting }) => (
-            <form onSubmit={handleSubmit} noValidate>
+            <form
+              onSubmit={async event => {
+                await handleSubmit(event);
+              }}
+              noValidate
+            >
               <Field
                 className={classes.formElement}
                 name="id"
@@ -75,9 +96,11 @@ function AddingForm(props) {
                 type="text"
                 label="phone"
               />
-              <Button variant="contained" type="submit" disabled={submitting}>
-                Войти в аккаунт
-              </Button>
+              <Box display="flex" justifyContent="flex-end">
+                <Button variant="contained" type="submit" disabled={submitting}>
+                  Добавить запись
+                </Button>
+              </Box>
             </form>
           )}
         />
@@ -86,4 +109,4 @@ function AddingForm(props) {
   );
 }
 
-export default AddingForm;
+export default connect(null, MapDispatchToProps)(AddingForm);
