@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
 function Stub() {
-  return <h1>STUB PAGE</h1>;
+  return <h1>Выберите тип загружаемых данных</h1>;
 }
 
 export default Stub;
