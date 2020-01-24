@@ -1,25 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import "./DataVolumeSelector.css";
-import { useStyles } from "./styles.js";
 import { Typography, Button, ButtonGroup } from "@material-ui/core";
+import { dataRequest } from "../../modules/Loader/";
+import { connect } from "react-redux";
 
-function DataVolumeSelector() {
-  const [tasks, setTasks] = useState([]);
+const MapDispatchToProps = {
+  dataRequest
+};
 
-  const classes = useStyles();
-
+function DataVolumeSelector(props) {
   return (
     <>
       <Typography variant="h6" gutterBottom>
         Выберите формат отображения
       </Typography>
       <ButtonGroup aria-label="outlined primary button group">
-        <Button component={Link} to="/SmallData">
+        <Button
+          component={Link}
+          to="/Data/1"
+          onClick={() => {
+            props.dataRequest("small");
+          }}
+        >
           Маленький
         </Button>
-        <Button component={Link} to="/BigData">
+        <Button
+          component={Link}
+          to="/Data/1"
+          onClick={() => {
+            props.dataRequest("big");
+          }}
+        >
           Большой
         </Button>
       </ButtonGroup>
@@ -27,4 +38,4 @@ function DataVolumeSelector() {
   );
 }
 
-export default DataVolumeSelector;
+export default connect(null, MapDispatchToProps)(DataVolumeSelector);
