@@ -2,6 +2,7 @@ import validator from "validator";
 
 export const validate = values => {
   const errors = {};
+  //формула валидации формы добавления в таблицу
   if (values.id) {
     if (validator.isEmpty(values.id)) {
       errors.id = "Поле обязательное для заполнения";

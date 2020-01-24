@@ -21,6 +21,8 @@ import { save, load } from "../../helpers/localStorage";
 
 import { fetchSmallData, fetchBigData } from "./api.js";
 
+//для большинства синхронных, в рамках данного тз, запросов, добавлены саги с поддержкой
+//статусов "isLoading", частично симулирую flow запросов к удаленному api
 function* fetchLoaderWatcher(action) {
   yield takeLatest(dataRequest, dataRequestFlow);
   yield takeLatest(searchingRequest, searchingRequestFlow);

@@ -32,6 +32,7 @@ import {
 } from "../../modules/Loader/";
 import { Cancel, Search } from "@material-ui/icons";
 
+//объект с именами колонок и айдишниками для хидера таблицы, и для передачи информации в хелперы
 const columns = [
   { name: "Id", id: "id" },
   { name: "First Name", id: "firstName" },
@@ -72,6 +73,7 @@ function DataTable(props) {
   if (props.error !== null) return <h1>{props.error}</h1>;
   if (props.isLoading) return <LoadingBar />;
 
+  //слайсер для строк текущей страницы таблицы
   let page = props.data.slice(
     props.match.params.page * 50 - 50,
     props.match.params.page * 50
@@ -104,6 +106,7 @@ function DataTable(props) {
                   onChange={event => {
                     setSearch(event.target.value);
                   }}
+                  //обработчик для кнопки Enter в инпуте поиска
                   onKeyPress={event => {
                     if (event.key === "Enter") {
                       event.preventDefault();

@@ -16,6 +16,7 @@ function AddingForm(props) {
 
   const onSubmit = values => {
     props.addNewDataRequest(
+      //добавляем пустые объекты адреса и описания в передаваемый объект, так как в тз их нет в форме
       Object.assign(values, {
         address: {
           streetAddress: "",
@@ -29,6 +30,7 @@ function AddingForm(props) {
   };
 
   return (
+    // вместо активации кнопки после заполнения полей формы, добавлена отправка форму после прохождения валидации
     <Paper className={classes.formWindow}>
       <Box p={2}>
         <Form
