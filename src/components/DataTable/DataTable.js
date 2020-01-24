@@ -73,8 +73,8 @@ function DataTable(props) {
   if (props.isLoading) return <LoadingBar />;
 
   let page = props.data.slice(
-    props.match.params.page * 5 - 5,
-    props.match.params.page * 5
+    props.match.params.page * 50 - 50,
+    props.match.params.page * 50
   );
 
   return (
@@ -196,7 +196,9 @@ function DataTable(props) {
           </TableContainer>
         </Box>
       </Box>
-      <PaginationBar length={props.data.length} />
+      <Box display="flex" justifyContent="center">
+        <PaginationBar length={props.data.length} />
+      </Box>
       <SelectedElementInfo index={selectedElement} />
     </>
   );
