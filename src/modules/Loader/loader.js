@@ -1,43 +1,56 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 import {
-  smallDataRequest,
-  smallDataFailure,
-  smallDataSuccess,
-  bigDataRequest,
-  bigDataFailure,
-  bigDataSuccess
+  dataRequest,
+  dataFailure,
+  dataSuccess,
+  searchingRequest,
+  searchingSuccess,
+  searchingFailure,
+  sortingSuccess,
+  isLoadingSet,
+  isLoadingRemove,
+  restoreDataRequest,
+  restoreDataSuccess,
+  addNewDataRequest,
+  addNewDataSuccess
 } from "./actions";
 
-const smallData = handleActions(
+const data = handleActions(
   {
-    [smallDataRequest]: () => [],
-    [smallDataFailure]: () => [],
-    [smallDataSuccess]: (_state, action) => action.payload
+    [dataRequest]: () => [],
+    [dataSuccess]: (_state, action) => action.payload,
+    [addNewDataSuccess]: (_state, action) => [..._state, action.payload],
+    [searchingSuccess]: (_state, action) => action.payload,
+    [sortingSuccess]: (_state, action) => action.payload,
+    [restoreDataSuccess]: (_state, action) => action.payload
   },
-  []
-);
-const bigData = handleActions(
-  {
-    [bigDataRequest]: () => [],
-    [bigDataFailure]: () => [],
-    [bigDataSuccess]: (_state, action) => action.payload
-  },
-  []
+  null
 );
 
 const error = handleActions(
   {
-    [smallDataRequest]: () => false,
-    [bigDataRequest]: () => false,
-    [smallDataFailure]: () => true,
-    [bigDataFailure]: () => true
+    [dataRequest]: () => null,
+    [dataFailure]: (_state, action) => action.payload,
+    [searchingFailure]: (_state, action) => action.payload
+  },
+  null
+);
+
+const isLoading = handleActions(
+  {
+    [dataRequest]: () => true,
+    [isLoadingSet]: () => true,
+    [searchingRequest]: () => true,
+    [restoreDataRequest]: () => true,
+    [addNewDataRequest]: () => true,
+    [isLoadingRemove]: () => false
   },
   false
 );
 
-export default combineReducers({ smallData, bigData, error });
+export default combineReducers({ data, error, isLoading });
 
-export const getSmallData = state => state.loader.smallData;
-export const getBigData = state => state.loader.bigData;
+export const getData = state => state.loader.data;
 export const getError = state => state.loader.error;
+export const getIsLoading = state => state.loader.isLoading;
