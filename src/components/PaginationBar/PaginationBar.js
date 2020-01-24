@@ -19,7 +19,7 @@ function PaginationBar(props) {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Pagination
-          limit={5}
+          limit={50}
           offset={offset}
           total={props.length}
           onClick={(e, offset) => {
